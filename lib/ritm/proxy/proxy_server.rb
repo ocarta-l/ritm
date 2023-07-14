@@ -20,7 +20,7 @@ module Ritm
         p @config[:https_forward].inspect
         p ssl_pass_through? req.unparsed_uri
         p "Gem ProxyServer - do_CONNECT - middle"
-        req.unparsed_uri = @config[:https_forward] unless ssl_pass_through? req.unparsed_uri
+        # req.unparsed_uri = @config[:https_forward] unless ssl_pass_through? req.unparsed_uri
         super
         p "Gem ProxyServer - do_CONNECT - after"
       end
