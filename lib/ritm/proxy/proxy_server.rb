@@ -30,20 +30,20 @@ module Ritm
         @config[:forwarder].forward(req, res)
       end
 
-      # Override
-      def proxy_uri(req, _res)
-        p "Gem ProxyServer - proxy_uri - before"
-        if req.request_method == 'CONNECT'
-          p "Gem ProxyServer - proxy_uri - if"
-          # Let the reverse proxy handle upstream proxies for https
-          nil
-        else
-          p "Gem ProxyServer - proxy_uri - else"
-          proxy = @config[:ritm_conf].misc.upstream_proxy
-          proxy.nil? ? nil : URI.parse(proxy)
-        end
-        p "Gem ProxyServer - proxy_uri - after"
-      end
+      # # Override
+      # def proxy_uri(req, _res)
+      #   p "Gem ProxyServer - proxy_uri - before"
+      #   if req.request_method == 'CONNECT'
+      #     p "Gem ProxyServer - proxy_uri - if"
+      #     # Let the reverse proxy handle upstream proxies for https
+      #     nil
+      #   else
+      #     p "Gem ProxyServer - proxy_uri - else"
+      #     proxy = @config[:ritm_conf].misc.upstream_proxy
+      #     proxy.nil? ? nil : URI.parse(proxy)
+      #   end
+      #   p "Gem ProxyServer - proxy_uri - after"
+      # end
 
       private
 
