@@ -14,7 +14,7 @@ module Ritm
       # @param forwarder [Ritm::HTTPForwarder]: Forwards http traffic with interception
       def initialize(port, ca, forwarder)
         @ca = ca
-        default_vhost = 'localhost'
+        default_vhost = '0.0.0.0'
         @server = CertSigningHTTPSServer.new(Port: port,
                                              AccessLog: [],
                                              Logger: WEBrick::Log.new(File.open("plop2.txt", 'w'), 5),
