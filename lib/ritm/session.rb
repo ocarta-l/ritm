@@ -47,10 +47,12 @@ module Ritm
     end
 
     def on_request(&block)
+      p "Gem - on_request"
       dispatcher.on_request(&block)
     end
 
     def on_response(&block)
+      p "Gem - on_response"
       dispatcher.on_response(&block)
     end
   end
