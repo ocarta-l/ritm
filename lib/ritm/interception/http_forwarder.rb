@@ -54,6 +54,7 @@ module Ritm
     private
 
     def faraday_forward(request)
+      p "Gem HTTPForwarder - faraday_forward"
       req_method = request.request_method.downcase
       @client.send req_method do |req|
         req.options[:proxy] = @config.misc.upstream_proxy
@@ -64,6 +65,7 @@ module Ritm
     end
 
     def to_webrick_response(faraday_response, webrick_response)
+      p "Gem HTTPForwarder - to_webrick_response"
       webrick_response.status = faraday_response.status
       webrick_response.body = faraday_response.body
       faraday_response.headers.each do |name, value|

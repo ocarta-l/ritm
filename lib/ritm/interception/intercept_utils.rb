@@ -4,6 +4,7 @@ module Ritm
   # Interceptor callbacks calling logic shared by the HTTP Proxy Server and the SSL Reverse Proxy Server
   module InterceptUtils
     def intercept_request(handler, request, intercept_request_settings)
+      p "Gem InterceptUtils - intercept_request"
       return if handler.nil?
       preprocess(request, intercept_request_settings)
       handler.call(request)
@@ -20,6 +21,7 @@ module Ritm
     private
 
     def preprocess(req_res, settings)
+      p "Gem InterceptUtils - preprocess"
       headers = header_obj(req_res)
       decode(req_res) if settings.unpack_gzip_deflate
       req_res.header.delete_if { |name, _v| strip?(name, settings.strip_headers) }
@@ -48,6 +50,7 @@ module Ritm
     end
 
     def header_obj(req_res)
+      p "Gem InterceptUtils - header_obj"
       case req_res
       when WEBrick::HTTPRequest
         req_res
@@ -57,6 +60,7 @@ module Ritm
     end
 
     def decode(req_res)
+      p "Gem InterceptUtils - decode"
       encoding = content_encoding(req_res)
       return if encoding == :identity
 

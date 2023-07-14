@@ -11,6 +11,7 @@ module Ritm
     end
 
     def on_request(&block)
+      p "Gem DISPATCHER - on_request"
       @handlers[:on_request] << block
     end
 
@@ -19,6 +20,7 @@ module Ritm
     end
 
     def notify_request(request)
+      p "Gem DISPATCHER - notify_request"
       notify(:on_request, request)
     end
 
