@@ -23,6 +23,7 @@ module Ritm
       # Override
       # Handles HTTP (no SSL) traffic interception
       def proxy_service(req, res)
+        p "Gem ProxyServer - proxy_service"
         # Proxy Authentication
         proxy_auth(req, res)
         @config[:forwarder].forward(req, res)
