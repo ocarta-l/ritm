@@ -9,6 +9,7 @@ module Ritm
     end
 
     def service(request, response)
+      p "Gem RequestInterceptorServlet - service"
       @forwarder.forward(request, response)
     end
   end

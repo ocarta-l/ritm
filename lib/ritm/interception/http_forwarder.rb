@@ -45,6 +45,7 @@ module Ritm
     end
 
     def forward(request, response)
+      p "Gem HTTPForwarder - forward"
       intercept_request(@request_interceptor, request, @config.intercept.request)
       faraday_response = faraday_forward request
       to_webrick_response faraday_response, response
