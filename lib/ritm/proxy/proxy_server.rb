@@ -17,6 +17,9 @@ module Ritm
       # Patches the destination address on HTTPS connections to go via the HTTPS Reverse Proxy
       def do_CONNECT(req, res)
         p "Gem ProxyServer - do_CONNECT - before"
+        p @config[:https_forward].inspect
+        p ssl_pass_through? req.unparsed_uri
+        p "Gem ProxyServer - do_CONNECT - middle"
         req.unparsed_uri = @config[:https_forward] unless ssl_pass_through? req.unparsed_uri
         super
         p "Gem ProxyServer - do_CONNECT - after"
