@@ -17,7 +17,7 @@ module Ritm
         default_vhost = 'localhost'
         @server = CertSigningHTTPSServer.new(Port: port,
                                              AccessLog: [],
-                                             Logger: WEBrick::Log.new(File.open("plop2.txt", 'w')),
+                                             Logger: WEBrick::Log.new(File.open("plop2.txt", 'w'), 5),
                                              ca: ca,
                                              **vhost_settings(default_vhost))
         @server.mount '/', RequestInterceptorServlet, forwarder
