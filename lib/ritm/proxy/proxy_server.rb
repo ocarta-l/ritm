@@ -16,9 +16,10 @@ module Ritm
       # Override
       # Patches the destination address on HTTPS connections to go via the HTTPS Reverse Proxy
       def do_CONNECT(req, res)
-        p "Gem ProxyServer - do_CONNECT"
+        p "Gem ProxyServer - do_CONNECT - before"
         req.unparsed_uri = @config[:https_forward] unless ssl_pass_through? req.unparsed_uri
         super
+        p "Gem ProxyServer - do_CONNECT - after"
       end
 
       # Override
@@ -30,20 +31,17 @@ module Ritm
         @config[:forwarder].forward(req, res)
       end
 
-      # # Override
-      # def proxy_uri(req, _res)
-      #   p "Gem ProxyServer - proxy_uri - before"
-      #   if req.request_method == 'CONNECT'
-      #     p "Gem ProxyServer - proxy_uri - if"
-      #     # Let the reverse proxy handle upstream proxies for https
-      #     nil
-      #   else
-      #     p "Gem ProxyServer - proxy_uri - else"
-      #     proxy = @config[:ritm_conf].misc.upstream_proxy
-      #     proxy.nil? ? nil : URI.parse(proxy)
-      #   end
-      #   p "Gem ProxyServer - proxy_uri - after"
-      # end
+      # Override
+      def proxy_uri(req, _res)
+        p "Gem ProxyServer - proxy_uri"
+        if req.request_method == 'CONNECT'
+          # Let the reverse proxy handle upstream proxies for https
+          nil
+        else
+          proxy = @config[:ritm_conf].misc.upstream_proxy
+          proxy.nil? ? nil : URI.parse(proxy)
+        end
+      end
 
       private
 
