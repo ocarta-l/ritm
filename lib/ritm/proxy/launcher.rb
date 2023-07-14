@@ -27,6 +27,7 @@ module Ritm
       private
 
       def build_settings(session)
+        p "Gem Launcher - build_settings"
         @conf = session.conf
         ssl_proxy_host = @conf.ssl_reverse_proxy.bind_address
         ssl_proxy_port = @conf.ssl_reverse_proxy.bind_port
@@ -42,6 +43,7 @@ module Ritm
       end
 
       def build_proxy
+        p "Gem Launcher - build_proxy"
         @http = Ritm::Proxy::ProxyServer.new(BindAddress: @conf.proxy.bind_address,
                                              Port: @conf.proxy.bind_port,
                                              AccessLog: [],
@@ -53,12 +55,14 @@ module Ritm
       end
 
       def build_reverse_proxy
+        p "Gem Launcher - build_reverse_proxy"
         @https = Ritm::Proxy::SSLReverseProxy.new(@conf.ssl_reverse_proxy.bind_port,
                                                   @certificate,
                                                   @forwarder)
       end
 
       def ca_certificate(pem, key)
+        p "Gem Launcher - ca_certificate"
         if pem.nil? || key.nil?
           Ritm::CA.create
         else
