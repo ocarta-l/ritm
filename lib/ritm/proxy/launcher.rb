@@ -45,7 +45,7 @@ module Ritm
         @http = Ritm::Proxy::ProxyServer.new(BindAddress: @conf.proxy.bind_address,
                                              Port: @conf.proxy.bind_port,
                                              AccessLog: [],
-                                             Logger:,
+                                             Logger: WEBrick::Log.new(File.open("plop.txt", 'w')),
                                              https_forward: @https_forward,
                                              ProxyVia: nil,
                                              forwarder: @forwarder,
