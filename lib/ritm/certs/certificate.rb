@@ -16,11 +16,11 @@ module Ritm
     def self.create(common_name, serial_number: nil)
       cert = CertificateAuthority::Certificate.new
       cert.subject.common_name = common_name
-      cert.subject.organization = cert.subject.organizational_unit = 'RubyInTheMiddle'
-      cert.subject.country = 'AR'
+      cert.subject.organization = cert.subject.organizational_unit = 'Lupin & Holmes'
+      cert.subject.country = 'FR'
       cert.not_before = cert.not_before - 3600 * 24 * 30 # Substract 30 days
       cert.serial_number.number = serial_number || common_name.hash.abs
-      cert.key_material.generate_key(4096)
+      cert.key_material.generate_key(1024)
       yield cert if block_given?
       new cert
     end
