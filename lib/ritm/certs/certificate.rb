@@ -20,6 +20,7 @@ module Ritm
       cert.subject.organizational_unit = 'Lupin & Holmes CA'
       cert.subject.country = 'FR'
       cert.subject.state = 'France'
+      cert.signing_entity = true
       cert.not_before = cert.not_before - 3600 * 24 * 30 # Substract 30 days
       cert.serial_number.number = serial_number || common_name.hash.abs
       cert.key_material.generate_key(4096)
