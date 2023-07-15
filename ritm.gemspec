@@ -14,7 +14,7 @@ Gem::Specification.new do |s|
   s.files       = Dir['lib/**/*']
   s.homepage    = 'https://github.com/argos83/ritm'
   s.license     = 'Apache License, v2.0'
-  s.add_runtime_dependency 'certificate_authority', '~> 1.1.0'
+  s.add_runtime_dependency 'certificate_authority', '~> 0.1.6'
   s.add_runtime_dependency 'dot_hash', '~> 0.5'
   s.add_runtime_dependency 'faraday', '~> 0.13'
   s.add_runtime_dependency 'webrick', '~> 1.3'
