@@ -14,15 +14,15 @@ module Ritm
     end
 
     def self.create(common_name, serial_number: nil)
-      byebug
       cert = CertificateAuthority::Certificate.new
       cert.subject.common_name = common_name
       cert.subject.organization = 'Lupin & Holmes'
       cert.subject.organizational_unit = 'Lupin & Holmes CA'
       cert.subject.country = 'FR'
+      cert.subject.state = 'France'
       cert.not_before = cert.not_before - 3600 * 24 * 30 # Substract 30 days
       cert.serial_number.number = serial_number || common_name.hash.abs
-      cert.key_material.generate_key(2048)
+      cert.key_material.generate_key(4096)
       yield cert if block_given?
       new cert
     end
