@@ -17,7 +17,7 @@ Gem::Specification.new do |s|
   s.add_runtime_dependency 'certificate_authority', '~> 0.1.6'
   s.add_runtime_dependency 'dot_hash', '~> 0.5'
   s.add_runtime_dependency 'faraday', '~> 0.13'
-  s.add_runtime_dependency 'webrick', '~> 1.3'
+  s.add_runtime_dependency 'webrick', '~> 1.8.1'
   s.add_development_dependency 'httpclient', '~> 2.8'
   s.add_development_dependency 'rake', '~> 12.2'
   s.add_development_dependency 'rspec', '~> 3.7'
